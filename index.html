@@ -241,6 +241,29 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
+        // Floating Hearts Effect
+        function createHearts() {
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = "🐒";
+                heart.className = "heart";
+                document.body.appendChild(heart);
+
+                let x = Math.random() * window.innerWidth;
+                let duration = Math.random() * 3 + 7;
+
+                heart.style.left = x + "px";
+                heart.style.animationDuration = duration + "s";
+
+                setTimeout(() => heart.remove(), duration * 1000);
+            }
+        }
+
+        // Surprise Button Redirect
+        function openSurprise() {
+            window.location.href = "https://drive.google.com/drive/folders/1RtLYDqmHZFgoU2s1wh5SKsvOSJftd7ps"; // Change this to your surprise link
+        }
+
         // Slideshow Functionality
         let slideIndex = 0;
         function showSlides() {
