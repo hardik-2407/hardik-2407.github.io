@@ -52,7 +52,7 @@
             max-width: 1200px;
         }
 
-        /* Resizable Slideshow */
+        /* Slideshow Container */
         .slideshow {
             flex: 1;
             position: relative;
@@ -63,6 +63,14 @@
             overflow: hidden;
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            text-align: center;
         }
 
         .slide img {
@@ -166,47 +174,23 @@
     <div class="content">
         <!-- Slideshow -->
         <div class="slideshow">
-            <img src="img/PHOTO-2025-02-01-09-30-20.jpg" >
-            <div class="caption"> Okay, this made to the website already 💖</div>
+            <div class="slide">
+                <img src="img/PHOTO-2025-02-01-09-30-20.jpg">
+                <div class="caption">Okay, this made it to the website already 💖</div>
+            </div>
+            <div class="slide">
+                <img src="img/PHOTO-2024-10-10-00-54-02.jpg">
+                <div class="caption">You are right behind him</div>
+            </div>
+            <div class="slide">
+                <img src="img/PHOTO-2024-11-21-19-42-44.jpg">
+                <div class="caption">My favorite version of yours!</div>
+            </div>
         </div>
-        <div class="slideshow">
-            <img src="img/PHOTO-2024-10-10-00-54-02.jpg" >
-            <div class="caption"> You are right behind him</div>
-        </div>
-        <div class="slideshow">
-            <img src="img/PHOTO-2024-11-21-19-42-44.jpg" >
-            <div class="caption"> My favorite version of yours!</div>
-        </div>
-        <div class="slideshow">
-            <img src="img/PHOTO-2024-12-26-08-56-46.jpg" >
-            <div class="caption"> I love this picture</div>
-        </div>
-        <div class="slideshow">
-            <img src="img/PHOTO-2024-12-31-16-30-27.jpg" >
-            <div class="caption"> You are my canvas. Everything else is just a filler.</div>
-        </div>
-        <div class="slideshow">
-            <img src="img/PHOTO-2025-01-01-16-36-54.jpg" >
-            <div class="caption"> These idiots have no idea what their parents are doing for them</div>
-        </div>
-        <div class="slideshow">
-            <img src="img/PHOTO-2025-02-01-09-20-48.jpg" >
-            <div class="caption"> This wasn't a bad one either</div>
-        </div>
-        <div class="slideshow">
-            <img src="img/PHOTO-2025-02-01-09-30-20.jpg" >
-            <div class="caption"> Okay, this made to the website already 💖</div>
-        </div>
-        <div class="slideshow">
-            <img src="img/PHOTO-2024-10-21-22-38-58.jpg
-" >
-            <div class="caption"> This monkey loves you</div>
-        </div>
-        
 
         <!-- Important Events -->
         <div class="events">
-            <h2>Dates you should remember🌟</h2>
+            <h2>Dates You Should Remember 🌟</h2>
             <div class="event">📅 <b>First Conversation:</b> August 11, 2024 – The day magic began!</div>
             <div class="event">📞 <b>First Call:</b> Aug 16, 2024 – Hearing your voice made my heart melt ❤️</div>
             <div class="event">💬 <b>First "I Love You":</b> September 12, 2024 – The best moment of my life. 😘</div>
@@ -215,12 +199,12 @@
     </div>
 
     <!-- Buttons -->
-    <button class="button" onclick="createHearts()">Click this for Love!</button>
-    <button class="button" onclick="openSurprise()">🎁 Click this to smile!</button>
+    <button class="button" onclick="createHearts()">Click for Love!</button>
+    <button class="button" onclick="openSurprise()">🎁 Click to Smile!</button>
 
     <script>
         // Timer Calculation
-        const startDate = new Date("2024-08-11T00:00:00"); // Change to your real anniversary
+        const startDate = new Date("2024-08-11T00:00:00");
 
         function updateTimer() {
             const now = new Date();
@@ -237,28 +221,17 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // Floating Hearts Effect
-        function createHearts() {
-            for (let i = 0; i < 30; i++) {
-                let heart = document.createElement("div");
-                heart.innerHTML = "🐒";
-                heart.className = "heart";
-                document.body.appendChild(heart);
-
-                let x = Math.random() * window.innerWidth;
-                let duration = Math.random() * 3 + 7;
-
-                heart.style.left = x + "px";
-                heart.style.animationDuration = duration + "s";
-
-                setTimeout(() => heart.remove(), duration * 1000);
-            }
+        // Slideshow Functionality
+        let slideIndex = 0;
+        function showSlides() {
+            let slides = document.querySelectorAll(".slide");
+            slides.forEach(slide => slide.style.display = "none");
+            slides[slideIndex].style.display = "block";
+            slideIndex = (slideIndex + 1) % slides.length;
         }
 
-        // Surprise Button Redirect
-        function openSurprise() {
-            window.location.href = "https://drive.google.com/drive/folders/1RtLYDqmHZFgoU2s1wh5SKsvOSJftd7ps"; // Change this to your surprise link
-        }
+        setInterval(showSlides, 3000);
+        showSlides();
     </script>
 
 </body>
