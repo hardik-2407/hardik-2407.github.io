@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love 💕</title>
+    <style>
+        /* Romantic Themed Background */
+        body {
+            background: linear-gradient(180deg, #ff758c, #ff7eb3, #ffb6c1);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 3em;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px white; }
+            to { text-shadow: 0 0 20px yellow; }
+        }
+
+        /* Floating Love Timer */
+        #timer {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            z-index: 1000;
+        }
+
+        /* Main Content Layout */
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 70vh;
+            max-width: 1200px;
+        }
+
+        /* Resizable Slideshow */
+        .slideshow {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+
+        /* Slideshow Caption */
+        .caption {
+            position: absolute;
+            bottom: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px;
+            width: 90%;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Important Events (Beside Slideshow) */
+        .events {
+            flex: 1;
+            padding: 20px;
+            text-align: left;
+            max-height: 100%;
+            overflow-y: auto;
+        }
+
+        .event {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Buttons */
+        .button {
+            background: #ff4d6d;
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            font-size: 24px;
+            color: red;
+            animation: float 3s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(2); opacity: 0; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 800px) {
+            .content {
+                flex-direction: column;
+                height: auto;
+            }
+            .slideshow, .events {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Love Timer (Always Visible) -->
+    <div id="timer"></div>
+
+    <h1>For You, My Love ❤️</h1>
+
+    <!-- Slideshow & Important Events Side-by-Side -->
+    <div class="content">
+        <!-- Slideshow -->
+        <div class="slideshow">
+            <img src="https://drive.google.com/uc?id=17e9WGj-Ma5vNt6S2mM8tdoW_VnsdGeTt" alt="Us Together">
+            <div class="caption">Our beautiful memories together 💖</div>
+        </div>
+
+        <!-- Important Events -->
+        <div class="events">
+            <h2>Our Special Moments 🌟</h2>
+            <div class="event">📅 <b>First Meeting:</b> June 15, 2022 – The day we first met!</div>
+            <div class="event">📞 <b>First Video Call:</b> July 5, 2022 – Seeing your smile made my heart race. ❤️</div>
+            <div class="event">💬 <b>First "I Love You":</b> August 10, 2022 – The best moment of my life. 😘</div>
+            <div class="event">🎉 <b>First Date:</b> September 2, 2022 – A day I will never forget. 💑</div>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <button class="button" onclick="createHearts()">Click for Love!</button>
+    <button class="button" onclick="openSurprise()">🎁 Surprise for You!</button>
+
+    <script>
+        // Timer Calculation
+        const startDate = new Date("2022-06-15T00:00:00"); // Change to your real anniversary
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('timer').innerText = 
+                `Together for: ${days} days, ${hours}h, ${minutes}m, ${seconds}s`;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Floating Hearts Effect
+        function createHearts() {
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.className = "heart";
+                document.body.appendChild(heart);
+
+                let x = Math.random() * window.innerWidth;
+                let duration = Math.random() * 3 + 2;
+
+                heart.style.left = x + "px";
+                heart.style.animationDuration = duration + "s";
+
+                setTimeout(() => heart.remove(), duration * 1000);
+            }
+        }
+
+        // Surprise Button Redirect
+        function openSurprise() {
+            window.location.href = "https://drive.google.com/drive/folders/1RtLYDqmHZFgoU2s1wh5SKsvOSJftd7ps"; // Change this to your surprise link
+        }
+    </script>
+
+</body>
+</html>
